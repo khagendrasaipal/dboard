@@ -2,7 +2,7 @@
 <div class="row">
 
     <div class="col-md-6">
-        <form class="form-signin"  (ngSubmit)="organizationFormSubmit()">
+        <form class="form-signin" [formGroup]="organizationForm" (ngSubmit)="organizationFormSubmit()">
             <input type="hidden" formControlName="orgidint">
             <div class="card">
                 <div class="card-header"><strong>Create Organization</strong></div>
@@ -11,11 +11,13 @@
 
                     <div class="row input-group col-md-12">
                         <div class="col-md-4 forRequired">
-                            <label>Admin Level</label>
+                            <label> Level</label>
                         </div>
                         <div class="col-md-8">
-                            <select class="form-control" name="adminlevel" #lid formControlName="adminlevel">
-                                <option value="">abc</option>
+                            <select class="form-control" name="adm_level" formControlName="adm_level">
+                                <option value="1">abc</option>
+                                <option value="2">dd</option>
+                                <option value="3">dddd</option>
                                 
                             </select>
                             <span style="color: red;">
@@ -23,6 +25,60 @@
                             </span>
 
                         </div>
+                    </div><br>
+                    <div class="row input-group col-md-12">
+                        <div class="col-md-4 forRequired">
+                            <label>Administration</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control" name="adm_id" formControlName="adm_id">
+                                <option value="1">abc</option>
+                                <option value="2">dd</option>
+                                <option value="3">dddd</option>
+                                
+                            </select>
+                            <span style="color: red;">
+                              
+                            </span>
+
+                        </div>
+                    </div><br>
+                    <div class="row input-group col-md-12">
+                        <div class="col-md-4 forRequired">
+                            <label>Parent</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control" name="parent" formControlName="parent">
+                                <option value="1">abc</option>
+                                <option value="2">dd</option>
+                                <option value="3">dddd</option>
+                                
+                            </select>
+                            <span style="color: red;">
+                              
+                            </span>
+
+                        </div>
+                    </div><br>
+                    <div class="row input-group col-md-12">
+                        <div class="col-md-4 forRequired">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="name" formControlName="name">
+                            
+                        </div>
+
+                    </div><br>
+                    <div class="row input-group col-md-12">
+                        <div class="col-md-4 forRequired">
+                            <label>Code</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="code" formControlName="code">
+                            
+                        </div>
+
                     </div><br>
 
                     <div class="row">
@@ -55,7 +111,7 @@
 
 
 
-                <form class="form-srch" >
+                <form class="form-srch"  [formGroup]="srchForm" >
 
                     <div class="input-group">
                         <input class="form-control" placeholder="{{'_search' }}" id="srch_term"
@@ -93,11 +149,10 @@
                     </tbody>
                 </table>
 
-                <form>
+                <form [formGroup]="srchForm">
                     <div class="row" style="float:right">
                         <div class="col-md-12 smallbr">
-                            Entries <select name="entries" id="entries"
-                                formControlName="entries" (change)="search()">
+                            Entries <select name="entries" id="entries" formControlName="entries"  (change)="search()">
                                 <option value="10">10</option>
                                 <option value="20">20</option>
                                 <option value="50">50</option>
@@ -108,11 +163,11 @@
                 </form>
 
 
-                <!-- <div class="col-md-6">
+                <div class="col-md-6">
                     <pagination [rotate]="true" [maxSize]="5" [totalItems]="pagination.total" [(ngModel)]="pagination.currentPage"
                         [boundaryLinks]="true" [itemsPerPage]="pagination.perPage" (pageChanged)="paginatedData($event)"
                         previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
-                </div> -->
+                </div>
 
             </div>
         </div>

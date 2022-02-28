@@ -4,19 +4,29 @@ import { RouterModule, Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './containers';
 import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
-import { LoginComponent } from './views/pages/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { OrganizationComponent } from './organization/organization.component';
+import { AuthGuard, LoginGuard } from './auth.guard';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: 'dashboard',
+  //   pathMatch: 'full'
+  // },
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full'
+    component: LoginComponent,
+    canActivate: [LoginGuard],
+    data: {
+      title: 'Login Page'
+    }
   },
   {
     path: '',
     component: DefaultLayoutComponent,
+    canActivate: [AuthGuard],
     data: {
       title: 'Home'
     },

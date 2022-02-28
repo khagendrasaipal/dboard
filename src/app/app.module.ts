@@ -5,8 +5,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { OrganizationComponent } from './organization/organization.component';
+import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AuthInterceptor } from './auth-interceptor';
+
+import { AuthGuard, LoginGuard } from './auth.guard';
+import { LoginService } from './login/login.service';
+import { ApiService } from './api.service';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 import {
@@ -64,7 +70,7 @@ const APP_CONTAINERS = [
 
 
 @NgModule({
-  declarations: [AppComponent,OrganizationComponent, ...APP_CONTAINERS],
+  declarations: [AppComponent,OrganizationComponent,LoginComponent, ...APP_CONTAINERS],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -95,9 +101,14 @@ const APP_CONTAINERS = [
     ListGroupModule,
     CardModule,
     ToastrModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   
   providers: [
+    ApiService,
+    LoginService,
+    AuthGuard,
+    LoginGuard,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,

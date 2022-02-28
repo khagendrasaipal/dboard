@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, NgModel } from '@angular/forms';
 import { OrganizationService } from './organization.service';
 import { ToastrService } from 'ngx-toastr';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-organization',
   templateUrl: './organization.component.html',
@@ -10,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class OrganizationComponent implements OnInit {
 
-  organizationForm!: FormGroup;
+  organizationForm: FormGroup;
   srchForm: FormGroup;
 
   model: any = {};
@@ -43,17 +42,26 @@ export class OrganizationComponent implements OnInit {
   constructor(private toastr: ToastrService, private RS: OrganizationService, private fb: FormBuilder) {
 
     this.formLayout = {
-      orgidint: [''],
-      adminlevel: ['', Validators.required],
-      
+      adm_level: ['1', Validators.required],
+      adm_id: ['1', Validators.required],
+      parent: [''],
+      name: ['', Validators.required],
+      code: [''],
+      orgidint:['']
 
     };
 
+  //   this.organizationForm = fb.group({
+  //     'adminlevel': ['0',Validators.required],
+  //     'orgidint': ['']
+  // });
 
-    this.organizationForm = fb.group(this.formLayout)
-    this.srchForm = new FormGroup({
-      entries: new FormControl('10'),
-      srch_term: new FormControl(''),
+
+    this.organizationForm = fb.group(this.formLayout);
+
+    this.srchForm = fb.group({
+      'entries': new FormControl('10'),
+      'srch_term': new FormControl(''),
 
     })
   }
@@ -92,30 +100,43 @@ export class OrganizationComponent implements OnInit {
 
   getDistricts() {
     this.RS.getDistricts(this.organizationForm.value.provinceid).subscribe(
-      (result: any) => {
-        this.districts = result.data;
-        // console.log(this.provinces);
-      },
-      error => {
-        this.toastr.error(error.error, 'Error');
-      }
+      {
+        next: (v) => {
+          console.log(v),
+          this.districts = v},
+        error: (e) =>{
+          console.error(e),
+          this.toastr.error(e.error, 'Error');
+        } ,
+        complete: () => {
+          // this.districts = result.data;
+        }
+    }
+      // (result: any) => {
+      //   this.districts = result.data;
+      //   // console.log(this.provinces);
+      // },
+      // error => {
+      //   this.toastr.error(error.error, 'Error');
+      // }
     );
   }
 
   getDistrictperProvince(id: any) {
-    this.RS.getDistricts(id).subscribe(
-      (result: any) => {
+    this.RS.getDistricts(id).subscribe({
+     next: (result:any) => {
         if(this.organizationForm.value.adminlevel=='99518012939305441'){
           this.adminstr = result.data;
         }else{
           this.distr = result.data;
         }
         
-        // console.log(this.provinces);
       },
-      error => {
-        this.toastr.error(error.error, 'Error');
+      error : err => {
+        this.toastr.error(err.error, 'Error');
       }
+      
+    }
     );
   }
 
