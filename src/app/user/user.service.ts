@@ -10,11 +10,11 @@ import { AppConfig } from '../app.config';
 
 
 
-export class OrganizationService {
+export class UserService {
  
  
     baseUrl: string = AppConfig.baseUrl;
-    url= this.baseUrl+'organization';
+    url= this.baseUrl+'user';
     
 constructor(private http: HttpClient) {}
 
@@ -62,39 +62,43 @@ constructor(private http: HttpClient) {}
         
     }
 
-    getAdminLevel() {
-        return this.http.get(this.url + '/get-adminlvl');
-    }
-    getFederal() {
-        return this.http.get(this.url + '/get-federal');
-    }
-    getParentFilter(adminid:any,levelid:any) {
-        return this.http.get(this.url + '/get-parent-orgs?adminid='+adminid+'&levelid='+levelid);
-    }
-    getParent(aid:any) {
-        return this.http.get(this.url + '/get-parent/'+aid);
-    }
-    getOrglevel() {
-        return this.http.get(this.url + '/get-orglevel');
-    }
+    // getAdminLevel() {
+    //     return this.http.get(this.url + '/get-adminlvl');
+    // }
+    // getFederal() {
+    //     return this.http.get(this.url + '/get-federal');
+    // }
+    // getParentFilter(adminid:any,levelid:any) {
+    //     return this.http.get(this.url + '/get-parent-orgs?adminid='+adminid+'&levelid='+levelid);
+    // }
+    // getParent(aid:any) {
+    //     return this.http.get(this.url + '/get-parent/'+aid);
+    // }
+    // getOrglevel() {
+    //     return this.http.get(this.url + '/get-orglevel');
+    // }
 
-    getProvinces() {
-        return this.http.get(this.baseUrl + 'district/get-province');
+    // getProvinces() {
+    //     return this.http.get(this.baseUrl + 'district/get-province');
+    // }
+
+    // getDistricts(provinceid: any) {
+    //     return this.http.get(this.baseUrl + 'district/get-districts/'+provinceid);
+    //   }
+
+    //   getPalikas(districtid: any) {
+    //     return this.http.get(this.baseUrl + 'district/get-palikas/'+districtid);
+    //   }
+
+    //   getAdminStr(adminlevel: any) {
+    //     return this.http.get(this.baseUrl + 'district/get-adminstr/'+adminlevel);
+    //   }
+    //   getAdmins(lid:any){
+    //     return this.http.get(this.url + '/get-admin/'+lid);
+    //   }
+
+      getOrgs() {
+        return this.http.get(this.url + '/get-orgs');
     }
-
-    getDistricts(provinceid: any) {
-        return this.http.get(this.baseUrl + 'district/get-districts/'+provinceid);
-      }
-
-      getPalikas(districtid: any) {
-        return this.http.get(this.baseUrl + 'district/get-palikas/'+districtid);
-      }
-
-      getAdminStr(adminlevel: any) {
-        return this.http.get(this.baseUrl + 'district/get-adminstr/'+adminlevel);
-      }
-      getAdmins(lid:any){
-        return this.http.get(this.url + '/get-admin/'+lid);
-      }
    
 }

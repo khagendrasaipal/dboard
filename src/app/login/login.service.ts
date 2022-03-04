@@ -81,6 +81,6 @@ export class LoginService {
         return false;
     }
     getuserinfo(){
-        return this.http.get(this.baseUrl + 'mail/dispatch/getuserinfo');
+        return this.http.get(this.baseUrl + 'organization/getorgs/session');
     }
 }

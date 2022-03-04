@@ -7,6 +7,10 @@ import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { OrganizationComponent } from './organization/organization.component';
+import { UserComponent } from './user/user.component';
+import { CategoryComponent } from './category/category.component';
+import { IndicatorComponent } from './indicator/indicator.component';
+import { IndicatorValueComponent } from './indicators_value/indicatorvalue.component';
 import { AuthGuard, LoginGuard } from './auth.guard';
 
 const routes: Routes = [
@@ -39,6 +43,22 @@ const routes: Routes = [
       {
         path: 'organization',
         component: OrganizationComponent
+      },
+      {
+        path: 'user',
+        component: UserComponent
+      },
+      {
+        path: 'category',
+        component: CategoryComponent
+      },
+      {
+        path: 'indicators',
+        component: IndicatorComponent
+      },
+      {
+        path: 'indicators-value',
+        component: IndicatorValueComponent
       },
       {
         path: 'theme',

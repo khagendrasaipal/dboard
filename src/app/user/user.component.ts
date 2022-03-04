@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, NgModel } from '@angular/forms';
-import { OrganizationService } from './organization.service';
+import { UserService } from './user.service';
 import { ToastrService } from 'ngx-toastr';
 @Component({
-  selector: 'app-organization',
-  templateUrl: './organization.component.html',
-  styleUrls: ['./organization.component.scss']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss']
 })
-export class OrganizationComponent implements OnInit {
+export class UserComponent implements OnInit {
 
   organizationForm: FormGroup;
   srchForm: FormGroup;
@@ -39,15 +39,16 @@ export class OrganizationComponent implements OnInit {
   formLayout: any;
   slct: any;
 
-  constructor(private toastr: ToastrService, private RS: OrganizationService, private fb: FormBuilder) {
+  constructor(private toastr: ToastrService, private RS: UserService, private fb: FormBuilder) {
 
     this.formLayout = {
-      adm_level: [" ", Validators.required],
-      adm_id: ['', Validators.required],
-      parent: [''],
-      name: ['', Validators.required],
-      code: [''],
-      orgidint:['']
+      id: [" "],
+      fullname: [" ", Validators.required],
+      email: ['', Validators.required],
+      password: ['',Validators.required],
+      cpassword: ['', Validators.required],
+      orgid: ['',Validators.required],
+      role:['']
 
     };
 
@@ -65,21 +66,10 @@ export class OrganizationComponent implements OnInit {
 
     })
   }
-  getAdmin(lid:any){
-    this.RS.getAdmins(lid).subscribe({
-      next: (result:any) => {
-           this.adminstr = result.data; 
-       },
-       error : err => {
-         this.toastr.error(err.error, 'Error');
-       }
-       
-     }
-     );
-  }
+ 
 
-  getParent(aid:any){
-    this.RS.getParent(aid).subscribe({
+  getOrgs(){
+    this.RS.getOrgs().subscribe({
       next: (result:any) => {
            this.parents = result.data; 
        },
@@ -92,6 +82,7 @@ export class OrganizationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getOrgs();
     this.pagination.perPage = this.perPages[0];
     this.getList();
     
@@ -104,25 +95,7 @@ export class OrganizationComponent implements OnInit {
     
   }
 
-  getDistricts() {
-    this.RS.getDistricts(this.organizationForm.value.provinceid).subscribe(
-      {
-        next: (v) => {
-          console.log(v),
-          this.districts = v},
-        error: (e) =>{
-          console.error(e),
-          this.toastr.error(e.error, 'Error');
-        } ,
-        complete: () => {
-          // this.districts = result.data;
-        }
-    }
-     
-    );
-  }
-
-
+  
 
   
 
@@ -130,8 +103,13 @@ export class OrganizationComponent implements OnInit {
 
   organizationFormSubmit() {
     if (this.organizationForm.valid) {
-      this.model = this.organizationForm.value;
-      this.createItem(this.organizationForm.value.orgidint);
+      if(this.organizationForm.value.password==this.organizationForm.value.cpassword){
+        this.model = this.organizationForm.value;
+        this.createItem(this.organizationForm.value.id);
+      }else{
+        this.toastr.error('Password Mismatched!', 'Error');
+      }
+      
     } else {
       Object.keys(this.organizationForm.controls).forEach(field => {
         const singleFormControl = this.organizationForm.get(field);
@@ -214,10 +192,10 @@ export class OrganizationComponent implements OnInit {
       next:(result: any) => {
         this.model = result;
         this.organizationForm.patchValue(result);
-        this.getAdmin(this.organizationForm.value.adm_level);
-        this.organizationForm.patchValue(result);
-        this.getParent(this.organizationForm.value.adm_id);
-        this.organizationForm.patchValue(result);
+        // this.getAdmin(this.organizationForm.value.adm_level);
+        // this.organizationForm.patchValue(result);
+        // this.getParent(this.organizationForm.value.adm_id);
+        // this.organizationForm.patchValue(result);
        
 
       },

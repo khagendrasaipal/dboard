@@ -8,11 +8,14 @@ import { OrganizationComponent } from './organization/organization.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AuthInterceptor } from './auth-interceptor';
-
+import { CategoryComponent } from './category/category.component';
+import { IndicatorComponent } from './indicator/indicator.component';
+import { IndicatorValueComponent } from './indicators_value/indicatorvalue.component';
 import { AuthGuard, LoginGuard } from './auth.guard';
 import { LoginService } from './login/login.service';
 import { ApiService } from './api.service';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { UserComponent } from './user/user.component';
 
 
 import {
@@ -41,6 +44,7 @@ import {
   ButtonGroupModule,
   ButtonModule,
   CardModule,
+  CardTitleDirective,
   DropdownModule,
   FooterModule,
   FormModule,
@@ -70,7 +74,7 @@ const APP_CONTAINERS = [
 
 
 @NgModule({
-  declarations: [AppComponent,OrganizationComponent,LoginComponent, ...APP_CONTAINERS],
+  declarations: [AppComponent,OrganizationComponent,LoginComponent,CategoryComponent,IndicatorComponent,UserComponent,IndicatorValueComponent, ...APP_CONTAINERS],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
