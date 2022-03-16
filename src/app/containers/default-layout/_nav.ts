@@ -70,18 +70,18 @@ export const navItems: INavData[] = [
       
     ]
   },
-  {
-    name: 'Public Dashboard',
-    iconComponent: { name: 'cil-star' },
-    attributes:{target: '_blank'},
-    url: 'http://localhost:8010/test/dashboard?orgid='+localStorage.getItem('orgid'),
-  },
-  {
-    name: 'Web Portal',
-    iconComponent: { name: 'cil-star' },
-    attributes:{target: '_blank'},
-    url: 'http://localhost:8010/test/web?orgid='+localStorage.getItem('orgid'),
-  },
+  // {
+  //   name: 'Public Dashboard',
+  //   iconComponent: { name: 'cil-star' },
+  //   attributes:{target: '_blank'},
+  //   url: 'http://localhost:8010/test/dashboard?orgid='+localStorage.getItem('orgid'),
+  // },
+  // {
+  //   name: 'Web Portal',
+  //   iconComponent: { name: 'cil-star' },
+  //   attributes:{target: '_blank'},
+  //   url: 'http://localhost:8010/test/web?orgid='+localStorage.getItem('orgid'),
+  // },
   // {
   //   title: true,
   //   name: 'Theme'

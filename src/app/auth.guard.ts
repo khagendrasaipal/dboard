@@ -10,6 +10,8 @@ export class AuthGuard implements CanActivate {
 
     canActivate() {
         const udata = this.ls.retriveUserData();
+        // console.log("hello");
+        // console.log(udata);
         if (udata && !this.jwtHelper.isTokenExpired(udata.token)) {
             return true;
         }

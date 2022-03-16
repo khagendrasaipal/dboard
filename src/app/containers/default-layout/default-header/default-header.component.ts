@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { LoginService } from '../../../login/login.service';
 import { ClassToggleService, HeaderComponent } from '@coreui/angular';
 import { Router } from '@angular/router';
+import { AppConfig } from '../../../app.config';
 
 @Component({
   selector: 'app-default-header',
@@ -17,6 +18,9 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
   public newNotifications = new Array(5)
   orgs:any;
   mainorgid:any;
+  baseUrl: string = AppConfig.baseUrl;
+  dashurl= this.baseUrl+'test/dashboard?orgid=';
+  weburl= this.baseUrl+'test/web?orgid=';
   // @Input() mainorgid:any;
   
   

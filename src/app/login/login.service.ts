@@ -19,7 +19,9 @@ export class LoginService {
     }
 
     storeUserData(data: any) {
+        // console.log(data.user.orgid);
         localStorage.setItem(this.usrKey, JSON.stringify(data));
+        localStorage.setItem("orgid",data.user.orgid);
     }
 
     retriveUserData() {
@@ -27,7 +29,7 @@ export class LoginService {
         if (userInfo != null) {
             try {
                 // console.log(JSON.parse(userInfo).user.userid);
-                localStorage.setItem("orgid",JSON.parse(userInfo).user.orgid);
+                // localStorage.setItem("orgid",JSON.parse(userInfo).user.orgid);
                 return JSON.parse(userInfo);
             } catch (e) {
                 return null;
@@ -38,50 +40,51 @@ export class LoginService {
     }
 
     removeUserData() {
-        if(!this.restoreUserLogin()){
+        
             localStorage.removeItem(this.usrKey);
+            localStorage.removeItem("orgid");
             return;
-        }
+        
     }
 
-    loginWithAnotherUser(userId:string){
-        return new Promise((resolve,reject)=>{
-            const userData = this.retriveUserData();
-            if(userData.hasOwnProperty(this.altUser) || userData.hasOwnProperty(this.altToken)){
-                return reject(false);
-            }
-            this.api.post('get-user-token',{"userid":userId}).subscribe(data=>{
-                if(data.hasOwnProperty('token') && data?.token!=''){
-                    if(userData!=null){
-                        const cuser = userData.user;
-                        const ctoken = userData.token;
-                        data[this.altUser] = cuser;
-                        data[this.altToken] = ctoken;
-                        this.storeUserData(data);
-                        resolve(true);
-                    }
-                }
-                reject(false);
-            },err=>{
-                reject(err);
-            });
-        });
-    }
+    // loginWithAnotherUser(userId:string){
+    //     return new Promise((resolve,reject)=>{
+    //         const userData = this.retriveUserData();
+    //         if(userData.hasOwnProperty(this.altUser) || userData.hasOwnProperty(this.altToken)){
+    //             return reject(false);
+    //         }
+    //         this.api.post('get-user-token',{"userid":userId}).subscribe(data=>{
+    //             if(data.hasOwnProperty('token') && data?.token!=''){
+    //                 if(userData!=null){
+    //                     const cuser = userData.user;
+    //                     const ctoken = userData.token;
+    //                     data[this.altUser] = cuser;
+    //                     data[this.altToken] = ctoken;
+    //                     this.storeUserData(data);
+    //                     resolve(true);
+    //                 }
+    //             }
+    //             reject(false);
+    //         },err=>{
+    //             reject(err);
+    //         });
+    //     });
+    // }
 
-    restoreUserLogin(){
-        const userData = this.retriveUserData();
-        if(userData!=null){
-            if(userData.hasOwnProperty(this.altUser) && userData.hasOwnProperty(this.altToken)){
-                if( userData[this.altUser]!='' && userData[this.altToken]!=''){
-                    const bkUser = userData[this.altUser];
-                    const bkToken = userData[this.altToken];
-                    this.storeUserData({"user":bkUser,"token":bkToken});
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    // restoreUserLogin(){
+    //     const userData = this.retriveUserData();
+    //     if(userData!=null){
+    //         if(userData.hasOwnProperty(this.altUser) && userData.hasOwnProperty(this.altToken)){
+    //             if( userData[this.altUser]!='' && userData[this.altToken]!=''){
+    //                 const bkUser = userData[this.altUser];
+    //                 const bkToken = userData[this.altToken];
+    //                 this.storeUserData({"user":bkUser,"token":bkToken});
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
     getuserinfo(){
         return this.http.get(this.baseUrl + 'organization/getorgs/session');
     }
