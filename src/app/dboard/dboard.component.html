@@ -1,0 +1,94 @@
+<!-- <div id="oas_reading" class="oas-reading"> -->
+    <style>
+        #c-chartjs-0{
+            max-height: 500px !important;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"><strong>HMIS Indicators</strong></div>
+                <div class="card-body">
+                    <form class="form-signin" [formGroup]= "cForm" (ngSubmit)= "cFormSubmit()">
+                        <input type="hidden" class="form-control" name="id" formControlName="id"> 
+                      
+                        <div class="row input-group col-md-12">
+                            
+                            <div class="col-md-3">
+                                <select class="form-control" name="program" #pid formControlName="program" (change)="getIndicators(pid.value)">
+                                    <option value="">Select Program</option>
+                                    <option *ngFor=" let item of program " [value]="item.id">{{ item.name}}</option>
+                                </select>
+                                
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" name="indicator" #iid formControlName="indicator"  (change)="updateInd(iid.options[iid.options.selectedIndex].text,iid.value,fy.value)">
+                                    <option value="">Select Indicator</option>
+                                    <option *ngFor=" let item of indicators " [value]="item.id">{{ item.name}}</option>
+                                </select>
+                                
+                            </div>
+
+                            <div class="col-md-3">
+                                <select class="form-control" name="dyear" #fy formControlName="dyear" (change)="getData(iid.value,fy.value)">
+                                    <option value="">Fiscal Year</option>
+                                    <option value="2079">2079/80</option>
+                                    <option value="2078">2078/79</option>
+                                    <option value="2077">2077/78</option>
+                                    <option value="2076">2076/77</option>
+                                </select>
+                                
+                            </div>
+
+                            <div class="col-md-3">
+                                <select class="form-control" name="charttype" formControlName="charttype" #ct (change)="updateCtype(ct.value,iid.value,fy.value)">
+                                    <option value="bar">Bar Chart</option>
+                                    <option value="pie">Pie Chart</option>
+                                    <option value="line">Line Chart</option>
+                                    <!-- <option value="areaspline">Area Chart</option> -->
+                                </select>
+                                
+                            </div>
+                        </div>
+                        <!-- <c-col xs="12" lg="12" style="max-height: 100px !important;">
+                            <c-card class="mb-4">
+                              <c-card-header>
+                               
+                              </c-card-header>
+                              <c-card-body>
+                                <c-chart type="bar" [data]="chartBarData"></c-chart>
+                              </c-card-body>
+                            </c-card>
+                          </c-col> -->
+                          
+                        <div *ngIf="ctype==='bar'" class="row col-md-12">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                        <c-chart type="bar"  [data]="chartBarData"></c-chart>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div *ngIf="ctype==='pie'" class="row col-md-12" >
+                        <p style="text-align: center;">{{sindicator}}</p>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                    <c-chart type="pie" [data]="chartPieData"></c-chart>
+                </div>
+                    <div class="col-md-4"></div>
+                    </div>
+                    <div *ngIf="ctype==='line'" class="row col-md-12" >
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                    <c-chart type="line" [data]="chartLineData"></c-chart>
+                </div>
+                    <div class="col-md-1"></div>
+                </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+    
+        
+    </div>
+    <!-- </div> -->

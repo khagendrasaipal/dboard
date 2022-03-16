@@ -11,7 +11,13 @@ import { UserComponent } from './user/user.component';
 import { CategoryComponent } from './category/category.component';
 import { IndicatorComponent } from './indicator/indicator.component';
 import { IndicatorValueComponent } from './indicators_value/indicatorvalue.component';
+import { DashboardSetupComponent } from './dashboard_setup/dashboardsetup.component';
 import { AuthGuard, LoginGuard } from './auth.guard';
+import { DomainComponent } from './domain/domain.component';
+import { CompositeIndicatorComponent } from './compositeindicator/compositeindicator.component';
+import { CompositeIndicatorValueComponent } from './composite-indicator-value/compositeindicatorvalue.component';
+import { DboardComponent } from './dboard/dboard.component';
+
 
 const routes: Routes = [
   // {
@@ -59,6 +65,26 @@ const routes: Routes = [
       {
         path: 'indicators-value',
         component: IndicatorValueComponent
+      },
+      {
+        path: 'dashboard-setup',
+        component: DashboardSetupComponent
+      },
+      {
+        path: 'dboard',
+        component: DboardComponent
+      },
+      {
+        path: 'domain',
+        component: DomainComponent
+      },
+      {
+        path: 'composite-indicator',
+        component: CompositeIndicatorComponent
+      },
+      {
+        path: 'composite-indicator-value',
+        component: CompositeIndicatorValueComponent
       },
       {
         path: 'theme',

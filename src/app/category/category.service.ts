@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AppConfig } from '../app.config';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,9 @@ import { HttpClient } from '@angular/common/http';
 export class CategoryService {
   constructor(private http: HttpClient) { }
 
-  url = 'http://localhost:8010/category';
+  baseUrl: string = AppConfig.baseUrl;
+  url= this.baseUrl+'category';
+  // url = 'http://localhost:8010/category';
 
   create(data: any) {
     // console.log(data);

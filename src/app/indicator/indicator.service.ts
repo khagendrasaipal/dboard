@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AppConfig } from '../app.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IndicatorService {
   constructor(private http: HttpClient) { }
-
-  url = 'http://localhost:8010/indicator';
+  baseUrl: string = AppConfig.baseUrl;
+  url= this.baseUrl+'indicator';
+  // url = 'http://localhost:8010/indicator';
 
   create(data: any) {
     // console.log(data);

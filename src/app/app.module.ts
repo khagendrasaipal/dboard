@@ -16,6 +16,12 @@ import { LoginService } from './login/login.service';
 import { ApiService } from './api.service';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { UserComponent } from './user/user.component';
+import { DashboardSetupComponent } from './dashboard_setup/dashboardsetup.component';
+import { DomainComponent } from './domain/domain.component';
+import { CompositeIndicatorComponent } from './compositeindicator/compositeindicator.component';
+import { CompositeIndicatorValueComponent } from './composite-indicator-value/compositeindicatorvalue.component';
+import { DboardComponent } from './dboard/dboard.component';
+import { ChartjsModule } from '@coreui/angular-chartjs';
 
 
 import {
@@ -74,7 +80,8 @@ const APP_CONTAINERS = [
 
 
 @NgModule({
-  declarations: [AppComponent,OrganizationComponent,LoginComponent,CategoryComponent,IndicatorComponent,UserComponent,IndicatorValueComponent, ...APP_CONTAINERS],
+  declarations: [AppComponent,OrganizationComponent,LoginComponent,CategoryComponent,IndicatorComponent,DashboardSetupComponent,UserComponent,
+    IndicatorValueComponent,DomainComponent,CompositeIndicatorComponent,CompositeIndicatorValueComponent,DboardComponent, ...APP_CONTAINERS],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -98,6 +105,7 @@ const APP_CONTAINERS = [
     SidebarModule,
     SharedModule,
     TabsModule,
+    ChartjsModule,
     ListGroupModule,
     ProgressModule,
     BadgeModule,

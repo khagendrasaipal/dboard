@@ -5,10 +5,10 @@ import { AppConfig } from '../app.config';
 @Injectable({
   providedIn: 'root'
 })
-export class IndicatorValueService {
+export class CompositeIndicatorValueService {
   constructor(private http: HttpClient) { }
   baseUrl: string = AppConfig.baseUrl;
-  url= this.baseUrl+'indicator-value';
+  url= this.baseUrl+'composite-indicator-value';
   
   // url = 'http://localhost:8010/indicator-value';
 

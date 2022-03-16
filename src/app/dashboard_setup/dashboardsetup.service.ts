@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '../app.config';
-
 @Injectable({
   providedIn: 'root'
 })
-export class IndicatorValueService {
+export class DashboardSetupService {
   constructor(private http: HttpClient) { }
   baseUrl: string = AppConfig.baseUrl;
-  url= this.baseUrl+'indicator-value';
-  
-  // url = 'http://localhost:8010/indicator-value';
+  url= this.baseUrl+'dashboard-setup';
+  // url = 'http://localhost:8010/dashboard-setup';
 
   create(data: any) {
     // console.log(data);
@@ -53,10 +51,10 @@ export class IndicatorValueService {
   }
 
   getIndicators(cid:any){
-    return this.http.get(this.url + '/get-indicators/'+cid);
+    return this.http.get(this.baseUrl + 'indicator-value/get-indicators/'+cid);
   }
 
   getCategory(){
-    return this.http.get(this.url + '/get-category');
+    return this.http.get(this.baseUrl + 'indicator-value/get-category');
   }
 }

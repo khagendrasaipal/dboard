@@ -16,9 +16,14 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
   public newTasks = new Array(5)
   public newNotifications = new Array(5)
   orgs:any;
+  mainorgid:any;
+  // @Input() mainorgid:any;
+  
+  
 
   constructor(private classToggler: ClassToggleService,private loginService: LoginService, private router: Router) {
     super();
+    this.mainorgid=this.getorginfo();
   }
   logout() {
     this.loginService.removeUserData();
@@ -34,7 +39,8 @@ getorginfo(){
 this.loginService.getuserinfo().subscribe({
   next: (result:any) => {
     console.log(result);
-       this.orgs = result.data; 
+       this.orgs = result.data[0].orgname; 
+       this.mainorgid = result.data[0].orgid; 
    },
    error : err => {
      console.log("error");
@@ -44,3 +50,4 @@ this.loginService.getuserinfo().subscribe({
  );
 }
 }
+

@@ -26,6 +26,8 @@ export class LoginService {
         const userInfo = localStorage.getItem(this.usrKey);
         if (userInfo != null) {
             try {
+                // console.log(JSON.parse(userInfo).user.userid);
+                localStorage.setItem("orgid",JSON.parse(userInfo).user.orgid);
                 return JSON.parse(userInfo);
             } catch (e) {
                 return null;

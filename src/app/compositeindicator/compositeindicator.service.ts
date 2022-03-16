@@ -5,12 +5,11 @@ import { AppConfig } from '../app.config';
 @Injectable({
   providedIn: 'root'
 })
-export class IndicatorValueService {
+export class CompositeIndicatorService {
   constructor(private http: HttpClient) { }
   baseUrl: string = AppConfig.baseUrl;
-  url= this.baseUrl+'indicator-value';
-  
-  // url = 'http://localhost:8010/indicator-value';
+  url= this.baseUrl+'composite-indicator';
+  // url = 'http://localhost:8010/indicator';
 
   create(data: any) {
     // console.log(data);
@@ -50,10 +49,6 @@ export class IndicatorValueService {
   remove(id: string) {
     return this.http.delete(this.url + '/' + id);
 
-  }
-
-  getIndicators(cid:any){
-    return this.http.get(this.url + '/get-indicators/'+cid);
   }
 
   getCategory(){

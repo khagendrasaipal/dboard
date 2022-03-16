@@ -35,9 +35,52 @@ export const navItems: INavData[] = [
       {
         name: 'Public Dashboard Setup',
         url: '/dashboard-setup'
-      }
+      },
+      {
+        name: 'Dashboard',
+        url: '/dboard'
+      },
+      
       
     ]
+  },
+
+  {
+    name: 'Composite Indicator',
+    iconComponent: { name: 'cil-star' },
+    url: '/c-setup',
+    children: [
+      {
+        name: 'Domain',
+        url: '/domain'
+        
+      },
+      {
+        name: 'Indicator',
+        url: '/composite-indicator'
+      },
+      
+      {
+        name: 'Indicators Value',
+        url: '/composite-indicator-value'
+       
+      }
+     
+      
+      
+    ]
+  },
+  {
+    name: 'Public Dashboard',
+    iconComponent: { name: 'cil-star' },
+    attributes:{target: '_blank'},
+    url: 'http://localhost:8010/test/dashboard?orgid='+localStorage.getItem('orgid'),
+  },
+  {
+    name: 'Web Portal',
+    iconComponent: { name: 'cil-star' },
+    attributes:{target: '_blank'},
+    url: 'http://localhost:8010/test/web?orgid='+localStorage.getItem('orgid'),
   },
   // {
   //   title: true,
