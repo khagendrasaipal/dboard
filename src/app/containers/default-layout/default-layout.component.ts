@@ -15,4 +15,14 @@ export class DefaultLayoutComponent {
   };
 
   constructor() {}
+
+  toggle(e: any){
+    var element: HTMLElement = e.target.parentElement.parentElement.parentElement;
+    var elementt: HTMLElement = e.target.parentElement.parentElement;
+    var ele: HTMLElement = e.target.parentElement.parentElement.parentElement.parentElement;
+    // console.log(element);
+    element.classList.add('show');
+    elementt.classList.add('show');
+    ele.classList.add('show');
+  }
 }

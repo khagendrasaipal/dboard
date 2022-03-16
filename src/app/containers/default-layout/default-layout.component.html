@@ -1,6 +1,6 @@
 <!--sidebar-->
 
-<c-sidebar style="background: #1e97ed !important;"
+<c-sidebar style="background: #06022b !important;"
   #sidebar="cSidebar"
   class="d-print-none sidebar sidebar-fixed"
   id="sidebar"
@@ -26,7 +26,7 @@
   <!--  [perfectScrollbar]="perfectScrollbarConfig"-->
   <c-sidebar-nav
     [navItems]="navItems"
-  
+      (click)="toggle($event)"
   >
   
   </c-sidebar-nav>
