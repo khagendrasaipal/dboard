@@ -33,10 +33,9 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid){
       this.ls.login(this.loginForm.value).subscribe({
       next: (result:any) => {
-        // alert("hi");
         this.ls.storeUserData(result.data);
-        this.router.navigate(['/dashboard']);
-         
+        this.router.navigate(['/dboard']);
+       
        },
        error : err => {
          alert("Invalid Username or Password");

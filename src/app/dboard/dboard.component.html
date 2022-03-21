@@ -45,7 +45,7 @@
                                     <option value="bar">Bar Chart</option>
                                     <option value="pie">Pie Chart</option>
                                     <option value="line">Line Chart</option>
-                                    <!-- <option value="areaspline">Area Chart</option> -->
+                                    <option value="doughnut">Doughnut Chart</option>
                                 </select>
                                 
                             </div>
@@ -76,6 +76,8 @@
                 </div>
                     <div class="col-md-4"></div>
                     </div>
+
+                   
                     <div *ngIf="ctype==='line'" class="row col-md-12" >
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
@@ -83,6 +85,17 @@
                 </div>
                     <div class="col-md-1"></div>
                 </div>
+
+                <div *ngIf="ctype==='doughnut'" class="row col-md-12" ><br>
+                    <p style="text-align: center;">{{sindicator}}</p>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <c-chart type="doughnut" [data]="chartDoughnutData"></c-chart>
+            </div>
+                <div class="col-md-4"></div>
+            </div>
+
+
                     </form>
                 </div>
             </div>

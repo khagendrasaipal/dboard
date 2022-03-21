@@ -77,6 +77,16 @@ export class DboardComponent implements OnInit {
     ]
   };
 
+  chartDoughnutData = {
+    labels:  [...this.months].slice(0, 12),
+    datasets: [
+      {
+        backgroundColor: ['#fde23e','#f16e23', '#57d9ff','#937e88','#3de23e','#416e23', '#c9de53','#c5b2d8','#ec8888','#5957da','#f90303','#d6aa64'],
+        data: []
+      }
+    ]
+  };
+
   // chartLineOptions = {
   //   maintainAspectRatio: false,
   // };
@@ -179,6 +189,18 @@ export class DboardComponent implements OnInit {
                 data:this.ddata
               }
              
+            ]
+          };
+        }
+
+        if(this.ctype=='doughnut'){
+          this.chartDoughnutData = {
+            labels:  [...this.months].slice(0, 12),
+            datasets: [
+              {
+                backgroundColor: ['#fde23e','#f16e23', '#57d9ff','#937e88','#3de23e','#416e23', '#c9de53','#c5b2d8','#ec8888','#5957da','#f90303','#d6aa64'],
+                data: this.ddata
+              }
             ]
           };
         }
