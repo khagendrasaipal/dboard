@@ -2,6 +2,8 @@
 // If you want to override variables do it here
 @import "variables";
 
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
 $enable-ltr: true;
 $enable-rtl: true;
 
@@ -42,4 +44,16 @@ $enable-rtl: true;
 .forRequired::after{
   color: red;
  content: " *";
+}
+
+html:not([dir="rtl"]) .sidebar-nav .nav-icon:first-child {
+  margin-left: -1.5rem;
+}
+
+html:not([dir="rtl"]) .sidebar-nav .nav-group-items .nav-link .nav-icon {
+  margin-left: -3rem;
+}
+
+i{
+  margin-bottom: 9px;
 }
