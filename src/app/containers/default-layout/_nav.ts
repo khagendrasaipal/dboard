@@ -4,40 +4,42 @@ export const navItems: INavData[] = [
   {
     name: 'Dashboard',
     url: '/dboard',
-    iconComponent: { name: 'cil-speedometer' }
+    icon: 'bi bi-speedometer2',
   },
   {
     name: 'Setup',
-    iconComponent: { name: 'cil-settings' },
+    icon: 'bi bi-wrench',
     url: '/setup',
     children: [
       {
         name: 'Organization',
         url: '/organization',
-       
-        
+        icon: 'bi bi-building'       
       },
       {
         name: 'User',
         url: '/user',
-        iconComponent: { name: 'cil-user' }
+        icon: 'bi bi-person'
       },
       {
         name: 'Category',
-        url: '/category'
+        url: '/category',
+        icon: 'bi bi-grid-1x2' 
       },
       {
         name: 'Indicators',
         url: '/indicators',
-        
+        icon: 'bi bi-pencil'
       },
       {
         name: 'Indicators Value',
-        url: '/indicators-value'
+        url: '/indicators-value',
+        icon: 'bi bi-vector-pen'
       },
       {
         name: 'Public Dashboard Setup',
-        url: '/dashboard-setup'
+        url: '/dashboard-setup',
+        icon: 'bi bi-cloud-fog2' 
       },
       // {
       //   name: 'Dashboard',
@@ -50,22 +52,25 @@ export const navItems: INavData[] = [
 
   {
     name: 'Composite Indicator',
-    iconComponent: { name: 'cil-star' },
+    icon: 'bi bi-app-indicator',
     url: '/c-setup',
     children: [
       {
         name: 'Domain',
-        url: '/domain'
+        url: '/domain',
+        icon: 'bi bi-router'
         
       },
       {
         name: 'Indicator',
-        url: '/composite-indicator'
+        url: '/composite-indicator',
+        icon: 'bi bi-hand-index'
       },
       
       {
         name: 'Indicators Value',
-        url: '/composite-indicator-value'
+        url: '/composite-indicator-value',
+        icon: 'bi bi-hourglass-split'
        
       }
      

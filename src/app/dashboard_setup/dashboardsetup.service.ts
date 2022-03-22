@@ -5,15 +5,13 @@ import { AppConfig } from '../app.config';
   providedIn: 'root'
 })
 export class DashboardSetupService {
+
   constructor(private http: HttpClient) { }
   baseUrl: string = AppConfig.baseUrl;
   url= this.baseUrl+'dashboard-setup';
-  // url = 'http://localhost:8010/dashboard-setup';
 
   create(data: any) {
-    // console.log(data);
     return this.http.post(this.url, data);
-
   }
   update(id: any, data: any) {
 
@@ -50,8 +48,12 @@ export class DashboardSetupService {
 
   }
 
-  getIndicators(cid:any){
-    return this.http.get(this.baseUrl + 'indicator-value/get-indicators/'+cid);
+  getIndicators(pid:any){
+    return this.http.get(this.baseUrl + 'dboard/getIndicators/'+pid);
+  }
+
+  getPrograms() {
+    return this.http.get(this.baseUrl + 'dboard/getProgram');
   }
 
   getCategory(){
