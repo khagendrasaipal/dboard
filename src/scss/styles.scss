@@ -38,3 +38,8 @@ $enable-rtl: true;
   right: 0;
   margin-right: 17.5px;
 }
+
+.forRequired::after{
+  color: red;
+ content: " *";
+}

@@ -13,7 +13,7 @@
                             </div>
                             <div class="col-md-8">
                                 <select class="form-control" name="fy" formControlName="fy">
-                                    <option value="">Select One</option>
+                                    <option value="" selected disabled>Select One</option>
                                     <option value="2076">2076/77</option>
                                     <option value="2077">2077/78</option>
                                    <option value="2078">2078/79</option>
@@ -25,12 +25,12 @@
                             </div><br>
                             <div class="row input-group col-md-12">
                                 <div class="col-md-4 forRequired">
-                                    <label>Category</label>
+                                    <label>Program</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <select class="form-control" name="cat_id" formControlName="cat_id" #cid (change)="getIndicators(cid.value)">
-                                        <option value="">Select One</option>
-                                        <option *ngFor=" let item of categories " [value]="item.id">{{ item.name}}</option>
+                                    <select class="form-control" name="p_id" formControlName="p_id" #cid (change)="getIndicators(cid.value)">
+                                        <option value="" selected disabled>Select One</option>
+                                        <option *ngFor=" let item of programs " [value]="item.id">{{ item.name}}</option>
                                         
                                     </select>
                                     <span style="color: red;">
@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-md-8">
                                 <select class="form-control" name="indicator" formControlName="indicator">
-                                    <option value="">Select One</option>
+                                    <option value="" selected disabled>Select One</option>
                                     <option *ngFor=" let item of indicators " [value]="item.id">{{ item.name}}</option>
                                     
                                 </select>
@@ -55,6 +55,27 @@
     
                             </div>
                             </div><br>
+
+                            <div class="row input-group col-md-12">
+                                <div class="col-md-4 forRequired">
+                                    <label>Chart Type</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select class="form-control" formControlName="chart_type">
+                                        <option value="" Selected disabled>Select One</option>
+                                        <option value="Bar Chart">Bar Chart</option>
+                                        <option value="Pie Chart">Pie Chart</option>
+                                        <option value="Line Chart">Line Chart</option>
+                                        <option value="Doughnut Chart">Doughnut Chart</option>
+                                    </select> 
+        
+                                </div>
+                                </div><br>
+
+                            <div class="col-md-3">
+                               
+                                
+                            </div>
 
                         
                       
@@ -117,7 +138,7 @@
                                 <th>Id</th>
                                 <th>FY</th>
                                 <th>Indicator</th>
-                                <!-- <th>Value</th> -->
+                                <th>Chart Type</th>
                                 <th>Actions</th>
     
                             </tr>
@@ -127,8 +148,8 @@
                                 <td>{{item.id}}</td>
                                 <td>{{item.fy}}</td>
                                 <!-- <td>{{item.indicator}}</td> -->
-                                <td>{{item.value}}</td>
-                                
+                                <td>{{item.indicator}}</td>
+                                <td>{{item.chart_type}}</td>
                                 <td><a (click)="getUpdateItem(item.id)" href="javascript:void(0)" title="Edit"><svg cIcon class="me-2" name="cil-pen"></svg></a>&nbsp;
                                     <a href="javascript:void(0)" (click)="deleteItem(item.id)" title="Delete"><svg cIcon class="me-2" name="cil-trash"></svg></a>
                                 </td>

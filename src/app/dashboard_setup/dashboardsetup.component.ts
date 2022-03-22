@@ -28,17 +28,17 @@ export class DashboardSetupComponent implements OnInit {
 
   srchForm: FormGroup;
   formLayout: any;
-  categories:any;
+  // categories:any;
   indicators:any;
 
   constructor(private RS: DashboardSetupService, private toastr: ToastrService, private fb: FormBuilder) { 
     
     this.formLayout = {
       id:[],
-      cat_id: ['',Validators.required],
+      p_id: ['',Validators.required],
       indicator: ['',Validators.required],
       fy: ['',Validators.required],
-      value: ['',Validators.required],
+      chart_type: ['', Validators.required]
     }
     
     this.cForm =fb.group(this.formLayout);
@@ -53,15 +53,31 @@ export class DashboardSetupComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getIndicators();
-    this.getCategory();
+    // this.getCategory();
     this.pagination.perPage = this.perPages[0];
     this.getList();
+    this.getPrograms()
   }
 
-  getCategory(){
-    this.RS.getCategory().subscribe({
+  // getCategory(){
+  //   this.RS.getCategory().subscribe({
+  //     next: (result:any) => {
+  //          this.categories = result.data; 
+  //      },
+  //      error : err => {
+  //        this.toastr.error(err.error, 'Error');
+  //      }
+       
+  //    }
+  //    );
+  // }
+
+  programs: any;
+
+  getPrograms(){
+    this.RS.getPrograms().subscribe({
       next: (result:any) => {
-           this.categories = result.data; 
+           this.programs = result.data; 
        },
        error : err => {
          this.toastr.error(err.error, 'Error');
@@ -176,7 +192,7 @@ export class DashboardSetupComponent implements OnInit {
       next:(result: any) => {
         this.model = result;
         this.cForm.patchValue(result);
-        this.getIndicators(this.cForm.value.cat_id);
+        this.getIndicators(this.cForm.value.p_id);
         this.cForm.patchValue(result);
        
 
