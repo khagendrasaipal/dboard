@@ -35,6 +35,10 @@ export class DboardComponent implements OnInit {
   sindicator:any;
   ctype="bar";
   letters = '0123456789ABCDEF';
+  composites:any;
+  range = new Array();
+  caption = new Array();
+  cdata = new Array();
 
   // months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   months=["Shrawn","Bhadra","Ashoj","Kartik","Mangsir","Poush","Magh","Falgun","Chaitra","Baishakh","Jestha","Ashar"];
@@ -102,8 +106,8 @@ export class DboardComponent implements OnInit {
         label: 'Aggregate LEAF score (Leadership and performance)',
         backgroundColor: 'rgba(220, 220, 220, 0.2)',
         borderColor: '#6f42c1',
-        pointBackgroundColor: '#e55353',
-        pointBorderColor: '#6610f2',
+        pointBackgroundColor: '#f9b115',
+        pointBorderColor: '#f9b115',
         data: [9,16,17]
       }
     ]
@@ -139,6 +143,7 @@ export class DboardComponent implements OnInit {
     // this.getList();
     this.getProgram();
     this.sindicator="";
+    this.getComposite();
   }
 
   getProgram(){
@@ -153,6 +158,30 @@ export class DboardComponent implements OnInit {
      }
      );
   }
+ 
+  getComposite(){
+    let i=0;
+    this.RS.getComposite().subscribe({
+      next: (result:any) => {
+           this.composites = result.data; 
+          //  console.log(this.composites.length);
+           for(i=0;i<this.composites.length;i++){
+            this.range.push(this.composites[i].fy);
+            this.caption.push(this.composites[i].indicator);
+            this.cdata.push(this.composites[i].value);
+           }
+           var mySet = new Set(this.range);
+            this.range = [...mySet];
+           console.log(this.caption);
+       },
+       error : err => {
+         this.toastr.error(err.error, 'Error');
+       }
+       
+     }
+     );
+  }
+
   getIndicators(pid:any){
     this.RS.getIndicators(pid).subscribe({
       next: (result:any) => {

@@ -8,17 +8,19 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Setup',
-    iconComponent: { name: 'cil-star' },
+    iconComponent: { name: 'cil-settings' },
     url: '/setup',
     children: [
       {
         name: 'Organization',
-        url: '/organization'
+        url: '/organization',
+       
         
       },
       {
         name: 'User',
-        url: '/user'
+        url: '/user',
+        iconComponent: { name: 'cil-user' }
       },
       {
         name: 'Category',
@@ -26,7 +28,8 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Indicators',
-        url: '/indicators'
+        url: '/indicators',
+        
       },
       {
         name: 'Indicators Value',

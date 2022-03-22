@@ -61,4 +61,7 @@ export class DboardService {
   getDashboardData(iid:any,fy:any){
     return this.http.get(this.url + '/getData?iid='+iid+'&fy='+fy);
   }
+  getComposite(){
+    return this.http.get(this.url + '/getComposite');
+  }
 }
