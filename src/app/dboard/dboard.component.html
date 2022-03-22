@@ -24,7 +24,7 @@
                             <div class="col-md-3">
                                 <select class="form-control" name="indicator" #iid formControlName="indicator"  (change)="updateInd(iid.options[iid.options.selectedIndex].text,iid.value,fy.value)">
                                     <option value="">Select Indicator</option>
-                                    <option *ngFor=" let item of indicators " [value]="item.id">{{ item.name}}</option>
+                                    <option *ngFor=" let item of indicators " [value]="item.id">{{ item.name}} &nbsp;[{{ item.namenp}}]</option>
                                 </select>
                                 
                             </div>
@@ -104,4 +104,22 @@
     
         
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"><strong>Composite Indicators</strong></div>
+                <div class="card-body">
+                    <div class="row col-md-12" >
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                    <c-chart type="line" [data]="chartLineData2"></c-chart>
+                </div>
+                    <div class="col-md-1"></div>
+                </div>
+
+                    </div>
+                    </div>
+                    </div>
+                    </div>
     <!-- </div> -->

@@ -87,6 +87,28 @@ export class DboardComponent implements OnInit {
     ]
   };
 
+  chartLineData2 = {
+    labels: ['2076/77','2077/78','2078/79'],
+    datasets: [
+      {
+        label: 'Average MSS score (Availability and readiness)',
+        backgroundColor: 'rgba(220, 220, 220, 0.2)',
+                borderColor: '#198754',
+                pointBackgroundColor: '#e55353',
+                pointBorderColor: '#6610f2',
+        data: [10,20,12]
+      },
+      {
+        label: 'Aggregate LEAF score (Leadership and performance)',
+        backgroundColor: 'rgba(220, 220, 220, 0.2)',
+        borderColor: '#6f42c1',
+        pointBackgroundColor: '#e55353',
+        pointBorderColor: '#6610f2',
+        data: [9,16,17]
+      }
+    ]
+  };
+
   // chartLineOptions = {
   //   maintainAspectRatio: false,
   // };
