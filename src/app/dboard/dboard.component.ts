@@ -39,6 +39,8 @@ export class DboardComponent implements OnInit {
   range = new Array();
   caption = new Array();
   cdata = new Array();
+  myArray=new Array();
+  f=new Array();
 
   // months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   months=["Shrawn","Bhadra","Ashoj","Kartik","Mangsir","Poush","Magh","Falgun","Chaitra","Baishakh","Jestha","Ashar"];
@@ -122,9 +124,9 @@ export class DboardComponent implements OnInit {
     
     this.formLayout = {
       id:[],
-      program: ['',Validators.required],
-      indicator: [''],
-      dyear: [''],
+      program: ['1',Validators.required],
+      indicator: ['vH9Mm6o3LKn'],
+      dyear: ['2076'],
       charttype: ['bar'],
     }
     
@@ -144,6 +146,8 @@ export class DboardComponent implements OnInit {
     this.getProgram();
     this.sindicator="";
     this.getComposite();
+    this.getIndicators(1);
+    this.getData('vH9Mm6o3LKn',2076)
   }
 
   getProgram(){
@@ -161,18 +165,54 @@ export class DboardComponent implements OnInit {
  
   getComposite(){
     let i=0;
+    let c1=['#198754','#6f42c1','red','blue','#f9b115','#6610f2'];
+    let c2=['#f9b115','#6610f2','blue','red','#198754','#6f42c1'];
+    
     this.RS.getComposite().subscribe({
       next: (result:any) => {
            this.composites = result.data; 
-          //  console.log(this.composites.length);
            for(i=0;i<this.composites.length;i++){
-            this.range.push(this.composites[i].fy);
+            this.range.push(this.composites[i].fys);
             this.caption.push(this.composites[i].indicator);
             this.cdata.push(this.composites[i].value);
            }
+           
            var mySet = new Set(this.range);
             this.range = [...mySet];
-           console.log(this.caption);
+         
+           var cap=new Set(this.caption);
+           this.caption=[...cap];
+           for(i=0;i<this.caption.length;i++){
+            this.myArray.push({label: this.caption[i], backgroundColor: 'rgba(220, 220, 220, 0.2)',
+                      borderColor: c1[i],
+                      pointBackgroundColor: c2[i],
+                      pointBorderColor: c1[i],
+                      data:[this.cdata[i],this.cdata[i+2]]});
+           }
+          //  console.log(this.myArray);
+           this.chartLineData2 = {
+            labels: this.range,
+            datasets: this.myArray,
+            // [
+              
+              // {
+              //   label: 'Average MSS score (Availability and readiness)',
+              //   backgroundColor: 'rgba(220, 220, 220, 0.2)',
+              //           borderColor: '#198754',
+              //           pointBackgroundColor: '#e55353',
+              //           pointBorderColor: '#6610f2',
+              //   data: [10,20,12]
+              // },
+              // {
+              //   label: 'Aggregate LEAF score (Leadership and performance)',
+              //   backgroundColor: 'rgba(220, 220, 220, 0.2)',
+              //   borderColor: '#6f42c1',
+              //   pointBackgroundColor: '#f9b115',
+              //   pointBorderColor: '#f9b115',
+              //   data: [9,16,17]
+              // }
+            // ]
+          };
        },
        error : err => {
          this.toastr.error(err.error, 'Error');
